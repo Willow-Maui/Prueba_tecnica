@@ -4,5 +4,5 @@ import org.example.domain.models.Price;
 import org.example.domain.models.querys.PriceQuery;
 
 public interface PriceService {
-    public Price getPriceByCriteria(PriceQuery criteria);
+    Price getPriceByCriteria(PriceQuery criteria);
 }

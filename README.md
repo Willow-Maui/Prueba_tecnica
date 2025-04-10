@@ -40,6 +40,10 @@ Para ejecutar las pruebas unitarias e integrales del proyecto, siga estos pasos:
 
 * **Persistencia de Datos con H2:**
     * El uso de H2 en modo "in-memory" (en memoria) implica que los datos se almacenan en la memoria RAM y se pierden cada vez que se reinicia la aplicación. Para evitar la pérdida de datos y simular un entorno de base de datos más realista, se ha optado por el modo "file", que permite que los datos se guarden en un archivo en el disco.
+
+* **Pruebas adicionales:**
+    * Para probar casos más extraños y una mayor cobertura de código se han realizado test adicionales como pasar mal los datos o hacer la llamada contr una URL incorrecta.
+
 ## Arquitectura
 
 Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en tres módulos Maven (haciendo así una separación lógica, no solo conceptual):
@@ -77,3 +81,22 @@ Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en 
 * **Convenciones de Nombres:** Uso de nombres claros y descriptivos para clases, métodos y variables.
 * **Documentación:** Uso de Swagger para la documentación de la API y comentarios en el código.
 * **Manejo de Excepciones:** Uso de ControllerAdvice para el manejo centralizado de excepciones.
+* **Índices en Base de Datos:** Implementación de índices en las columnas de las tablas de la base de datos que se utilizan con frecuencia en las consultas. Optimizando su rendimiento reduciendo así el tiempo de respuesta de la aplicación.
+
+## Cobertura de Código (JaCoCo)
+
+Aquí se muestra la cobertura de código de las pruebas unitarias:
+
+[![Cobertura de Código](docs/images/JacocoCoverage.png)](docs/images/JacocoCoverage.png)
+
+Es relevante comentar que el grueso de clases que quedan sin cubrir son las relacionadas con Runtime Exceptions, Exceptions y 
+otros posibles errores que no debieran darse en esta funcionalidad.
+**Nota:** Se han eliminado las clases generadas automáticamente (Lombok y Mapstruct) del informe de JaCoCo para obtener una medición de cobertura más precisa.
+
+## Análisis de Calidad de Código (SonarQube)
+
+El proyecto ha sido analizado con SonarQube y no se han detectado problemas significativos. Puedes ver el informe completo en la siguiente imagen:
+
+![Análisis de SonarQube](docs/images/SonarQube.png)
+
+Este análisis garantiza que el código cumple con los estándares de calidad y seguridad definidos por SonarQube.
