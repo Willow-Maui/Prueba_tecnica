@@ -29,6 +29,8 @@ Para iniciar la aplicación, siga estos pasos:
     * Se ha implementado un sistema de caché para optimizar las consultas, especialmente aquellas que buscan el precio actual (sin fecha especificada), que se considera el caso de uso más común.
     * En un entorno de producción, sería necesario implementar la invalidación o actualización de la caché cuando se añaden o modifican precios, para mantener la coherencia de los datos. Sin embargo, para los propósitos de esta prueba, se ha implementado solo la funcionalidad requerida.
 
+* **Persistencia de Datos con H2:**
+    * El uso de H2 en modo "in-memory" (en memoria) implica que los datos se almacenan en la memoria RAM y se pierden cada vez que se reinicia la aplicación. Para evitar la pérdida de datos y simular un entorno de base de datos más realista, se ha optado por el modo "file", que permite que los datos se guarden en un archivo en el disco.
 ## Arquitectura
 
 Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en tres módulos Maven (haciendo así una separación lógica, no solo conceptual):
