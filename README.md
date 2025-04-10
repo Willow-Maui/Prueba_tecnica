@@ -16,6 +16,15 @@ Para iniciar la aplicación, siga estos pasos:
     * Navegue al directorio del módulo de infraestructura (`infrastructure`).
     * Ejecute el comando `mvn spring-boot:run` para iniciar la aplicación Spring Boot.
 
+## Instrucciones para Ejecutar las Pruebas
+
+Para ejecutar las pruebas unitarias e integrales del proyecto, siga estos pasos:
+
+1.  **Ejecución de las pruebas:**
+    * Navegue al directorio raíz del proyecto (`prueba_tecnica`).
+    * Ejecute el comando `mvn test` para compilar y empaquetar todos los módulos y  ejecutar todas las pruebas unitarias e integrales definidas en el.
+    * Maven mostrará los resultados de las pruebas en la terminal, indicando cuántas pruebas se ejecutaron, cuántas fallaron y cuántas se omitieron.
+
 ## Consideraciones de Implementación
 
 * **Moneda en la Respuesta:**
