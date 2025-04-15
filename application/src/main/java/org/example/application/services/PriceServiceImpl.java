@@ -18,7 +18,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class PriceServiceImpl implements PriceService{
 
-    public static final String PRODUCT_ID_VACIO = "Product id vacío.";
+    private static final String PRODUCT_ID_VACIO = "Product id vacío.";
     private final PriceRepository priceRepository;
 
     @Override
