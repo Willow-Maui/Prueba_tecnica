@@ -7,6 +7,7 @@ import org.example.domain.models.querys.PriceQuery;
 import org.example.application.adapters.in.PriceRepository;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -22,6 +23,7 @@ public class PriceServiceImpl implements PriceService{
     private final PriceRepository priceRepository;
 
     @Override
+    @Transactional
     @Cacheable(value = "prices", key = "#criteria.fechaConsulta + '-' + #criteria.productId + '-' + #criteria.brandId")
     public Price getPriceByCriteria(PriceQuery criteria) {
         checkArguments(criteria);
