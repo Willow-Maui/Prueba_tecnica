@@ -70,8 +70,15 @@ Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en 
 * **SLF4J:** Logging de la aplicación.
 * **Flyway:** Migraciones de base de datos.
 * **Swagger:** Documentación de la API.
+* **Spring Security:** Implementación de seguridad de la aplicación.
+* **JWT (JSON Web Tokens):** Manejo de autenticación y autorización mediante tokens.
 * **JPQL (Java Persistence Query Language):** Lenguaje de consultas para interactuar con la base de datos de manera orientada a objetos.
 
+## Seguridad con Spring Security y JWT
+
+Se ha integrado Spring Security para proteger la aplicación y se utiliza JWT para la autenticación y autorización.  El proceso de autenticación se realiza mediante un filtro personalizado (`JwtAuthFilter`) que verifica las credenciales del usuario y genera un token JWT en caso de éxito.  Este token se devuelve al cliente, que debe incluirlo en las peticiones subsiguientes en el encabezado `Authorization`.  Un segundo filtro (`JwtValidationFilter`) se encarga de validar el token en cada petición, extrayendo la información del usuario para autorizar el acceso al recurso solicitado.
+
+**Importante:** En este proyecto, por simplicidad y para facilitar la prueba, el servidor de autenticación y el servidor de recursos están configurados en la misma aplicación.  En un entorno de producción real, se recomienda encarecidamente separar estas dos funcionalidades en servidores distintos.  El servidor de autenticación se encargaría exclusivamente de la gestión de usuarios y la generación de tokens, mientras que el servidor de recursos se centraría en la lógica de negocio de la aplicación y la validación de los tokens para proteger los recursos.
 
 ## Patrones de Diseño y Buenas Prácticas
 
@@ -89,8 +96,7 @@ Aquí se muestra la cobertura de código de las pruebas unitarias:
 
 [![Cobertura de Código](docs/images/JacocoCoverage.png)](docs/images/JacocoCoverage.png)
 
-Es relevante comentar que el grueso de clases que quedan sin cubrir son las relacionadas con Runtime Exceptions, Exceptions y 
-otros posibles errores que no debieran darse en esta funcionalidad.
+Es relevante comentar que el grueso de clases que quedan sin cubrir son las relacionadas con Runtime Exceptions, Exceptions y otros posibles errores que no debieran darse en esta funcionalidad.
 **Nota:** Se han eliminado las clases generadas automáticamente (Lombok y Mapstruct) del informe de JaCoCo para obtener una medición de cobertura más precisa.
 
 ## Análisis de Calidad de Código (SonarQube)

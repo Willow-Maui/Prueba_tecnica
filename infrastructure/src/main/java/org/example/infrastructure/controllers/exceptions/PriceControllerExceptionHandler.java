@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice(basePackageClasses = PriceController.class)
-public class PriceExceptionHandlerController {
+public class PriceControllerExceptionHandler {
 
     public static final String TRAZA_DE_LA_EXCEPCION = "Traza de la excepción:";
     public static final String ILLEGAL_ARGUMENT_EXCEPTION_CAPTURADA = "IllegalArgumentException capturada: {}";
-    private static final Logger logger = LoggerFactory.getLogger(PriceExceptionHandlerController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PriceControllerExceptionHandler.class);
     public static final String EXCEPTION_CAPTURADA = "Exception capturada: {}";
     public static final String RUNTIME_EXCEPTION_CAPTURADA = "RuntimeException capturada: {}";
 
