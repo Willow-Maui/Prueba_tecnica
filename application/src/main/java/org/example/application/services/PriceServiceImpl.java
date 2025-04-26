@@ -22,6 +22,7 @@ public class PriceServiceImpl implements PriceService{
     private final PriceRepository priceRepository;
 
     @Override
+    @Transactional
     @Cacheable(value = "prices", key = "#criteria.fechaConsulta + '-' + #criteria.productId + '-' + #criteria.brandId")
     public Price getPriceByCriteria(PriceQuery criteria) {
         checkArguments(criteria);
