@@ -1,5 +1,6 @@
 package org.example.application.services;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.services.PriceService;
 import org.example.domain.models.Price;
