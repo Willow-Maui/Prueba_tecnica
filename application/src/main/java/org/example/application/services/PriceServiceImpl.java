@@ -18,6 +18,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class PriceServiceImpl implements PriceService{
 
+    public static final String BRAND_ID_VACIO = "Brand id vacío.";
     private static final String PRODUCT_ID_VACIO = "Product id vacío.";
     private final PriceRepository priceRepository;
 
@@ -41,6 +42,6 @@ public class PriceServiceImpl implements PriceService{
         if(Objects.isNull(criteria.getProductId()))
             throw new IllegalArgumentException(PRODUCT_ID_VACIO);
         if(Objects.isNull(criteria.getBrandId()))
-            throw new IllegalArgumentException("Brand id vacío.");
+            throw new IllegalArgumentException(BRAND_ID_VACIO);
     }
 }

@@ -1,8 +1,8 @@
 package org.example.infrastructure.repositories;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.models.Price;
 import org.example.application.adapters.in.PriceRepository;
+import org.example.domain.models.Price;
 import org.example.infrastructure.entities.PriceEntity;
 import org.example.infrastructure.mappers.PriceMapper;
 import org.example.infrastructure.repositories.jpa.PriceJpaRepository;

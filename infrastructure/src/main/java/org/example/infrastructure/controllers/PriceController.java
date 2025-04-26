@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,6 @@ public class PriceController {
     private final PriceMapper priceMapper;
     private static final Logger logger = LoggerFactory.getLogger(PriceController.class);
 
-
-
     @PostMapping(value="/",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Obtener el precio según los criterios", description = "Obtiene el precio que cumple con los criterios de busqueda, pudiendo ser nulo el de fecha.")
     @ApiResponse(responseCode = "200", description = "Precio encontrado", content = @Content(schema = @Schema(implementation = PriceResponse.class)))
@@ -43,6 +42,7 @@ public class PriceController {
     @ApiResponse(responseCode = "404", description = "Precio no encontrado", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.PRECIO_NO_ENCONTRADO+"\"}")))
     @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.ERROR_INTERNO+"<mensaje de error específico>.\"}")))
     @ApiResponse(responseCode = "503", description = "Error de tiempo de ejecución", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.ERROR_RUNTIME+"<mensaje de error específico>.\"}")))
+    @Secured("ROLE_PRUEBA")
     public ResponseEntity<PriceResponseInterface> getPrice(@RequestBody PriceRequest priceRequest) {
         logger.info("getPrice llamado con PriceRequest: {}", priceRequest);
         PriceResponse priceResponse = priceMapper.priceToPriceResponse(priceService.getPriceByCriteria(priceMapper.requestToQuery(priceRequest)));
@@ -54,4 +54,5 @@ public class PriceController {
         logger.info("PriceResponse encontrado, devolviendo OK");
         return ResponseEntity.ok(priceResponse);
     }
+
 }
