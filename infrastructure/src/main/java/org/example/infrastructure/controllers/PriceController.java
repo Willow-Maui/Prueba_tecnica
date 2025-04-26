@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.services.PriceService;
+import org.example.infrastructure.aspects.UserLog;
 import org.example.infrastructure.controllers.constants.APIConstants;
 import org.example.infrastructure.controllers.constants.ResponseStringConstants;
 import org.example.infrastructure.dtos.request.PriceRequest;
@@ -43,6 +44,7 @@ public class PriceController {
     @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.ERROR_INTERNO+"<mensaje de error específico>.\"}")))
     @ApiResponse(responseCode = "503", description = "Error de tiempo de ejecución", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.ERROR_RUNTIME+"<mensaje de error específico>.\"}")))
     @Secured("ROLE_PRUEBA")
+    @UserLog
     public ResponseEntity<PriceResponseInterface> getPrice(@RequestBody PriceRequest priceRequest) {
         logger.info("getPrice llamado con PriceRequest: {}", priceRequest);
         PriceResponse priceResponse = priceMapper.priceToPriceResponse(priceService.getPriceByCriteria(priceMapper.requestToQuery(priceRequest)));

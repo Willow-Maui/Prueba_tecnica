@@ -73,12 +73,17 @@ Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en 
 * **Spring Security:** Implementación de seguridad de la aplicación.
 * **JWT (JSON Web Tokens):** Manejo de autenticación y autorización mediante tokens.
 * **JPQL (Java Persistence Query Language):** Lenguaje de consultas para interactuar con la base de datos de manera orientada a objetos.
+* **AOP (Aspect-Oriented Programming):** Programación Orientada a Aspectos, utilizada para implementar el logging de usuarios.
 
 ## Seguridad con Spring Security y JWT
 
 Se ha integrado Spring Security para proteger la aplicación y se utiliza JWT para la autenticación y autorización.  El proceso de autenticación se realiza mediante un filtro personalizado (`JwtAuthFilter`) que verifica las credenciales del usuario y genera un token JWT en caso de éxito.  Este token se devuelve al cliente, que debe incluirlo en las peticiones subsiguientes en el encabezado `Authorization`.  Un segundo filtro (`JwtValidationFilter`) se encarga de validar el token en cada petición, extrayendo la información del usuario para autorizar el acceso al recurso solicitado.
 
 **Importante:** En este proyecto, por simplicidad y para facilitar la prueba, el servidor de autenticación y el servidor de recursos están configurados en la misma aplicación.  En un entorno de producción real, se recomienda encarecidamente separar estas dos funcionalidades en servidores distintos.  El servidor de autenticación se encargaría exclusivamente de la gestión de usuarios y la generación de tokens, mientras que el servidor de recursos se centraría en la lógica de negocio de la aplicación y la validación de los tokens para proteger los recursos.
+
+## Aspectos con AOP
+
+Se ha implementado un aspecto personalizado, la anotación `@UserLog`, para registrar información sobre el usuario que realiza las peticiones a los controladores. Esta anotación se puede aplicar tanto a métodos individuales como a clases completas, y permite registrar en el log el nombre de usuario y el método al que se accede.  Esto facilita la auditoría y el seguimiento de las acciones realizadas por los usuarios en la aplicación.
 
 ## Patrones de Diseño y Buenas Prácticas
 
