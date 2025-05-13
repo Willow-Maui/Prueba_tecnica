@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.services.PriceService;
+import org.example.infrastructure.aspects.TimeMeasurement;
 import org.example.infrastructure.aspects.UserLog;
 import org.example.infrastructure.controllers.constants.APIConstants;
 import org.example.infrastructure.controllers.constants.ResponseStringConstants;
@@ -45,6 +46,7 @@ public class PriceController {
     @ApiResponse(responseCode = "503", description = "Error de tiempo de ejecución", content = @Content(schema = @Schema(example = "{\"error\": \""+ ResponseStringConstants.ERROR_RUNTIME+"<mensaje de error específico>.\"}")))
     @Secured("ROLE_PRUEBA")
     @UserLog
+    @TimeMeasurement
     public ResponseEntity<PriceResponseInterface> getPrice(@RequestBody PriceRequest priceRequest) {
         logger.info("getPrice llamado con PriceRequest: {}", priceRequest);
         PriceResponse priceResponse = priceMapper.priceToPriceResponse(priceService.getPriceByCriteria(priceMapper.requestToQuery(priceRequest)));

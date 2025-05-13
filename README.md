@@ -15,6 +15,10 @@ Para iniciar la aplicación, siga estos pasos:
 2.  **Ejecución de la Aplicación:**
     * Navegue al directorio del módulo de infraestructura (`infrastructure`).
     * Ejecute el comando `mvn spring-boot:run` para iniciar la aplicación Spring Boot.
+    * Por defecto, la aplicación se ejecutará con el perfil "query". Para ejecutarla con el perfil "criteria", utilice el comando:
+        ```bash
+        mvn spring-boot:run -Dspring.profiles.active=criteria
+        ```
 
 ## Instrucciones para Ejecutar las Pruebas
 
@@ -22,27 +26,43 @@ Para ejecutar las pruebas unitarias e integrales del proyecto, siga estos pasos:
 
 1.  **Ejecución de las pruebas:**
     * Navegue al directorio raíz del proyecto (`prueba_tecnica`).
-    * Ejecute el comando `mvn test` para compilar y empaquetar todos los módulos y  ejecutar todas las pruebas unitarias e integrales definidas en el.
+    * Ejecute el comando `mvn test` para compilar y empaquetar todos los módulos y ejecutar todas las pruebas unitarias e integrales definidas en el.
     * Maven mostrará los resultados de las pruebas en la terminal, indicando cuántas pruebas se ejecutaron, cuántas fallaron y cuántas se omitieron.
+    * Por defecto, las pruebas se ejecutarán con el perfil "query". Si necesita otro perfil, puede configurarlo en el `pom.xml` como se describe en la documentación de Maven.
+
+## Instrucciones para Probar la API
+
+Para interactuar con la API, siga estos pasos:
+
+1.  **Iniciar la aplicación:** Siga las instrucciones de la sección "Instrucciones de Ejecución".
+
+2.  **Obtener un token de autenticación:**
+    * Realice una petición POST al endpoint `/auth/login` con las credenciales de usuario.
+    * Utilice el siguiente JSON en el cuerpo de la petición:
+        ```json
+        {
+            "username": "prueba",
+            "password": "12345"
+        }
+        ```
+    * La respuesta contendrá un token JWT en el campo "token".
+
+3.  **Realizar peticiones a la API:**
+    * Incluya el token JWT obtenido en el paso anterior en el encabezado "Authorization" de cada petición, con el prefijo "Bearer ".
+    * Ejemplo de encabezado:
+        ```
+        Authorization: Bearer <token>
+        ```
 
 ## Consideraciones de Implementación
 
-* **Moneda en la Respuesta:**
-    * El enunciado solicita la devolución del "precio final". Se ha considerado que la moneda es un componente esencial de este precio, por lo que la respuesta incluye el tipo de moneda.
-
-* **Prioridad y Fecha de Vigencia:**
-    * En caso de encontrar múltiples precios vigentes con la misma prioridad, se ha implementado la lógica para seleccionar la tarifa más reciente.
-    * Se permite realizar consultas sin especificar una fecha. En tales casos, se retornan los precios que estén en el periodo de vigencia actual.
-
-* **Optimización con Caché:**
-    * Se ha implementado un sistema de caché para optimizar las consultas, especialmente aquellas que buscan el precio actual (sin fecha especificada), que se considera el caso de uso más común.
-    * En un entorno de producción, sería necesario implementar la invalidación o actualización de la caché cuando se añaden o modifican precios, para mantener la coherencia de los datos. Sin embargo, para los propósitos de esta prueba, se ha implementado solo la funcionalidad requerida.
-
+* **Moneda en la Respuesta:** El enunciado solicita la devolución del "precio final". Se ha considerado que la moneda es un componente esencial de este precio, por lo que la respuesta incluye el tipo de moneda.
+* **Prioridad y Fecha de Vigencia:** En caso de encontrar múltiples precios vigentes con la misma prioridad, se ha implementado la lógica para seleccionar la tarifa más reciente. Se permite realizar consultas sin especificar una fecha. En tales casos, se retornan los precios que estén en el periodo de vigencia actual.
+* **Optimización con Caché:** Se ha implementado un sistema de caché para optimizar las consultas, especialmente aquellas que buscan el precio actual (sin fecha especificada), que se considera el caso de uso más común. En un entorno de producción, sería necesario implementar la invalidación o actualización de la caché cuando se añaden o modifican precios, para mantener la coherencia de los datos. Sin embargo, para los propósitos de esta prueba, se ha implementado solo la funcionalidad requerida.
 * **Persistencia de Datos con H2:**
     * El uso de H2 en modo "in-memory" (en memoria) implica que los datos se almacenan en la memoria RAM y se pierden cada vez que se reinicia la aplicación. Para evitar la pérdida de datos y simular un entorno de base de datos más realista, se ha optado por el modo "file", que permite que los datos se guarden en un archivo en el disco.
-
 * **Pruebas adicionales:**
-    * Para probar casos más extraños y una mayor cobertura de código se han realizado test adicionales como pasar mal los datos o hacer la llamada contr una URL incorrecta.
+    * Para probar casos más extraños y una mayor cobertura de código se han realizado test adicionales como pasar mal los datos o hacer la llamada contra una URL incorrecta.
 
 ## Arquitectura
 
@@ -74,16 +94,21 @@ Se ha adoptado una arquitectura hexagonal modular, dividiendo la aplicación en 
 * **JWT (JSON Web Tokens):** Manejo de autenticación y autorización mediante tokens.
 * **JPQL (Java Persistence Query Language):** Lenguaje de consultas para interactuar con la base de datos de manera orientada a objetos.
 * **AOP (Aspect-Oriented Programming):** Programación Orientada a Aspectos, utilizada para implementar el logging de usuarios.
+* **Selección de Perfiles de Consulta:** La aplicación permite seleccionar entre diferentes métodos para realizar las consultas a la base de datos, ofreciendo flexibilidad y la posibilidad de optimizar el rendimiento según las necesidades. Se han implementado dos opciones principales:
+    * **Consultas JPQL:** Se pueden realizar consultas utilizando Java Persistence Query Language (JPQL), un lenguaje de consulta orientado a objetos.
+    * **API de Criteria de JPA:** La API de Criteria proporciona una forma programática y de tipo seguro para construir consultas dinámicas. El perfil "query", que utiliza JPQL, se ha establecido como el método de consulta por defecto para las pruebas manuales, como se muestra en la imagen: 
+  
+    ![Mediciones Tiempos Métodos](docs/images/MedicionesTiemposMetodos.png).
 
 ## Seguridad con Spring Security y JWT
 
-Se ha integrado Spring Security para proteger la aplicación y se utiliza JWT para la autenticación y autorización.  El proceso de autenticación se realiza mediante un filtro personalizado (`JwtAuthFilter`) que verifica las credenciales del usuario y genera un token JWT en caso de éxito.  Este token se devuelve al cliente, que debe incluirlo en las peticiones subsiguientes en el encabezado `Authorization`.  Un segundo filtro (`JwtValidationFilter`) se encarga de validar el token en cada petición, extrayendo la información del usuario para autorizar el acceso al recurso solicitado.
+Se ha integrado Spring Security para proteger la aplicación y se utiliza JWT para la autenticación y autorización. El proceso de autenticación se realiza mediante un filtro personalizado (`JwtAuthFilter`) que verifica las credenciales del usuario y genera un token JWT en caso de éxito. Este token se devuelve al cliente, que debe incluirlo en las peticiones subsiguientes en el encabezado `Authorization`. Un segundo filtro (`JwtValidationFilter`) se encarga de validar el token en cada petición, extrayendo la información del usuario para autorizar el acceso al recurso solicitado.
 
-**Importante:** En este proyecto, por simplicidad y para facilitar la prueba, el servidor de autenticación y el servidor de recursos están configurados en la misma aplicación.  En un entorno de producción real, se recomienda encarecidamente separar estas dos funcionalidades en servidores distintos.  El servidor de autenticación se encargaría exclusivamente de la gestión de usuarios y la generación de tokens, mientras que el servidor de recursos se centraría en la lógica de negocio de la aplicación y la validación de los tokens para proteger los recursos.
+**Importante:** En este proyecto, por simplicidad y para facilitar la prueba, el servidor de autenticación y el servidor de recursos están configurados en la misma aplicación. En un entorno de producción real, se recomienda encarecidamente separar estas dos funcionalidades en servidores distintos. El servidor de autenticación se encargaría exclusivamente de la gestión de usuarios y la generación de tokens, mientras que el servidor de recursos se centraría en la lógica de negocio de la aplicación y la validación de los tokens para proteger los recursos.
 
 ## Aspectos con AOP
 
-Se ha implementado un aspecto personalizado, la anotación `@UserLog`, para registrar información sobre el usuario que realiza las peticiones a los controladores. Esta anotación se puede aplicar tanto a métodos individuales como a clases completas, y permite registrar en el log el nombre de usuario y el método al que se accede.  Esto facilita la auditoría y el seguimiento de las acciones realizadas por los usuarios en la aplicación.
+Se ha implementado un aspecto personalizado, la anotación `@UserLog`, para registrar información sobre el usuario que realiza las peticiones a los controladores. Esta anotación se puede aplicar tanto a métodos individuales como a clases completas, y permite registrar en el log el nombre de usuario y el método al que se accede. Esto facilita la auditoría y el seguimiento de las acciones realizadas por los usuarios en la aplicación.
 
 ## Patrones de Diseño y Buenas Prácticas
 
@@ -109,5 +134,3 @@ Es relevante comentar que el grueso de clases que quedan sin cubrir son las rela
 El proyecto ha sido analizado con SonarQube y no se han detectado problemas significativos. Puedes ver el informe completo en la siguiente imagen:
 
 ![Análisis de SonarQube](docs/images/SonarQube.png)
-
-Este análisis garantiza que el código cumple con los estándares de calidad y seguridad definidos por SonarQube.
