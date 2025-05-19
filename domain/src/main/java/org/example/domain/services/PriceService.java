@@ -2,6 +2,9 @@ package org.example.domain.services;
 
 import org.example.domain.models.Price;
 import org.example.domain.models.querys.PriceQuery;
+
+import java.util.Optional;
+
 /**
  * Service interface for handling price-related operations.
  *
@@ -9,5 +12,5 @@ import org.example.domain.models.querys.PriceQuery;
  * @author Willow Maui Garcia
  */
 public interface PriceService {
-    Price getPriceByCriteria(PriceQuery criteria);
+    Optional<Price> getPriceByCriteria(PriceQuery criteria);
 }

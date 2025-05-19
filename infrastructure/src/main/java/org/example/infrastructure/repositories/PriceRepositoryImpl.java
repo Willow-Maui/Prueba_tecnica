@@ -9,10 +9,7 @@ import org.example.infrastructure.repositories.jpa.PriceJpaRepository;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Implementation of the PriceRepository interface.
@@ -51,7 +48,7 @@ public class PriceRepositoryImpl implements PriceRepository {
      * @author Willow Maui Garcia
      */
     @Override
-    public Price findPriceByCriteria(Date queryDate, Long productId, Long brandId) {
+    public Optional<Price> findPriceByCriteria(Date queryDate, Long productId, Long brandId) {
         PriceEntity priceEntity=null;
         String[] activeProfiles = environment.getActiveProfiles();
 
@@ -64,8 +61,8 @@ public class PriceRepositoryImpl implements PriceRepository {
         }
 
         if (Objects.isNull(priceEntity)) {
-            return null;
+            return Optional.empty();
         }
-        return priceMapper.priceEntityToPrice(priceEntity);
+        return Optional.of(priceMapper.priceEntityToPrice(priceEntity));
     }
 }

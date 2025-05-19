@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 
 /**
@@ -44,7 +45,7 @@ public class PriceServiceImpl implements PriceService{
     @Override
     @Transactional
     @Cacheable(value = "prices", key = "#criteria.queryDate + '-' + #criteria.productId + '-' + #criteria.brandId")
-    public Price getPriceByCriteria(PriceQuery criteria) {
+    public Optional<Price> getPriceByCriteria(PriceQuery criteria) {
         checkArguments(criteria);
         Date queryDate = criteria.getQueryDate();
 

@@ -3,6 +3,8 @@ package org.example.application.adapters.in;
 import org.example.domain.models.Price;
 
 import java.util.Date;
+import java.util.Optional;
+
 /**
  * Interface that defines the methods to interact with the Price object from the
  * application layer.
@@ -17,5 +19,5 @@ public interface PriceRepository {
  * @since 1.0.0
  * @author Willow Maui García
  */
-Price findPriceByCriteria(Date queryDate, Long productId, Long brandId);
+Optional<Price> findPriceByCriteria(Date queryDate, Long productId, Long brandId);
 }

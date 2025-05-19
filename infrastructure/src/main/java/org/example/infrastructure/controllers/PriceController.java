@@ -67,7 +67,7 @@ public class PriceController {
     @TimeMeasurement
     public ResponseEntity<PriceResponseInterface> getPrice(@RequestBody PriceRequest priceRequest) {
         logger.info("getPrice llamado con PriceRequest: {}", priceRequest);
-        PriceResponse priceResponse = priceMapper.priceToPriceResponse(priceService.getPriceByCriteria(priceMapper.requestToQuery(priceRequest)));
+        PriceResponse priceResponse = priceMapper.priceToPriceResponse(priceService.getPriceByCriteria(priceMapper.requestToQuery(priceRequest)).orElse(null));
         logger.debug("PriceResponse obtenido: {}", priceResponse);
         if (Objects.isNull(priceResponse)) {
             logger.warn("PriceResponse es nulo, devolviendo NOT_FOUND");

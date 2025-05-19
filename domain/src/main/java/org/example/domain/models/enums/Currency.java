@@ -1,6 +1,9 @@
 package org.example.domain.models.enums;
 
 import lombok.Getter;
+
+import java.util.Optional;
+
 /**
  * Enumerated type with the possible currencies.
  *
@@ -25,12 +28,12 @@ public enum Currency {
         this.value = value;
     }
 
-    public static Currency fromValue(String value) {
+    public static Optional<Currency> fromValue(String value) {
         for (Currency currency : Currency.values()) {
             if (currency.value.equalsIgnoreCase(value)) {
-                return currency;
+                return Optional.of(currency);
             }
         }
-        return null;
+        return Optional.empty();
     }
 }

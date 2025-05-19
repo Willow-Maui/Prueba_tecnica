@@ -9,6 +9,7 @@ import org.example.domain.models.querys.PriceQuery;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+
 /**
  * Mapper between the domain model and the DTOs.
  *
@@ -31,7 +32,7 @@ public interface PriceMapper {
         if (curr == null) {
             return null;
         }
-        return Currency.fromValue(curr);
+        return Currency.fromValue(curr).orElse(null);
     }
 
     @Named("currencyGetValue")
