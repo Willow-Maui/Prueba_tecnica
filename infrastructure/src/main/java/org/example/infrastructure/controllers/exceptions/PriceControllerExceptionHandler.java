@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice(basePackageClasses = PriceController.class)
 public class PriceControllerExceptionHandler {
 
-    public static final String EXCEPTION_STACK_TRACE = "Traza de la excepción:";
-    public static final String ILLEGAL_ARGUMENT_EXCEPTION_CATCH = "IllegalArgumentException capturada: {}";
+    private static final String EXCEPTION_STACK_TRACE = "Traza de la excepción:";
+    private static final String ILLEGAL_ARGUMENT_EXCEPTION_CATCH = "IllegalArgumentException capturada: {}";
     private static final Logger logger = LoggerFactory.getLogger(PriceControllerExceptionHandler.class);
-    public static final String EXCEPTION_CATCH = "Exception capturada: {}";
-    public static final String RUNTIME_EXCEPTION_CATCH = "RuntimeException capturada: {}";
+    private static final String EXCEPTION_CATCH = "Exception capturada: {}";
+    private static final String RUNTIME_EXCEPTION_CATCH = "RuntimeException capturada: {}";
     /**
      * Handles IllegalArgumentException by logging the error and returning a INVALID_PARAMETERS response.
      *

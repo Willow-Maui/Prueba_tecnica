@@ -27,13 +27,13 @@ import java.util.*;
 
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
-    public static final String WRONG_LOGIN = "Login incorrecto.";
-    public static final String MALFORMED_LOGING = "Malformed loging.";
-    public static final int EXPIRATION_TIME = 3600000;
-    public static final String TOKEN = "token";
-    public static final String USERNAME = "Username";
-    public static final String AUTHORITIES = "authorities";
-    public static final String MESSAGE = "message";
+    private static final String WRONG_LOGIN = "Login incorrecto.";
+    private static final String MALFORMED_LOGING = "Malformed loging.";
+    private static final int EXPIRATION_TIME = 3600000;
+    private static final String TOKEN = "token";
+    private static final String USERNAME = "Username";
+    private static final String AUTHORITIES = "authorities";
+    private static final String MESSAGE = "message";
 
     private final AuthenticationManager authenticationManager;
 

@@ -29,9 +29,9 @@ import java.util.*;
 @RequiredArgsConstructor
 public class PriceRepositoryImpl implements PriceRepository {
 
-    public static final String CRITERIA = "criteria";
-    public static final String QUERY = "query";
-    public static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
+    private static final String CRITERIA = "criteria";
+    private static final String QUERY = "query";
+    private static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
     private final PriceJpaRepository priceJpaRepository;
     private final PriceMapper priceMapper ;
     private final Environment environment;

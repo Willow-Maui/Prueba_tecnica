@@ -21,7 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 @ActiveProfiles("query")
 class PriceControllerTest {
 
-    public static final String BEARER = "Bearer ";
+    private static final String BEARER = "Bearer ";
+
     @Autowired
     private MockMvc mockMvc;
 
