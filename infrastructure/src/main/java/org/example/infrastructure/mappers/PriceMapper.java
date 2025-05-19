@@ -9,7 +9,12 @@ import org.example.domain.models.querys.PriceQuery;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-
+/**
+ * Mapper between the domain model and the DTOs.
+ *
+ * @since 1.0.0
+ * @author Willow Maui García
+ */
 @Mapper(componentModel = "spring")
 public interface PriceMapper {
 

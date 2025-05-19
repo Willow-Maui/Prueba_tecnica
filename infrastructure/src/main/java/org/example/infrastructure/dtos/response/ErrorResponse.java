@@ -5,6 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO with the error response of the controller.
+ *
+ * @since 1.0.0
+ * @author Willow Maui García
+ */
 @Data
 @Builder
 @NoArgsConstructor

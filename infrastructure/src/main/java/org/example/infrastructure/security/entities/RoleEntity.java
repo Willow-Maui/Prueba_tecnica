@@ -4,6 +4,16 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Entity to represent a role in the system.
+ *
+ * <p>This class represents a role in the system. A role is a set of
+ * permissions that can be granted to a user. A user can have multiple roles
+ * and a role can be assigned to multiple users.</p>
+ *
+ * @author Willow Maui García
+ * @since 1.0.0
+ */
 @Getter
 @Setter
 @Entity

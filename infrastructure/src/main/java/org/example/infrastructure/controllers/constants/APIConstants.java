@@ -1,5 +1,11 @@
 package org.example.infrastructure.controllers.constants;
 
+/**
+ * This class contains the constants for the API paths.
+ *
+ * @since 1.0.0
+ * @author Willow Maui Garcia
+ */
 public class APIConstants {
     private APIConstants() {}
 

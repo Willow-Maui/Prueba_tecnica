@@ -7,6 +7,13 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Response DTO for the price. It contains the fields of the price that are relevant
+ * for the client.
+ *
+ * @since 1.0.0
+ * @author Willow Maui Garcia
+ */
 @Data
 @Builder
 @Schema(description = "Respuesta del precio")

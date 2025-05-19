@@ -1,6 +1,5 @@
 package org.example.infrastructure.entities;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +7,12 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Entity class that represents a price of a product.
+ *
+ * @since 1.0.0
+ * @author Willow Maui García
+ */
 @Getter
 @Setter
 @Entity

@@ -1,5 +1,10 @@
 package org.example.infrastructure.controllers.constants;
-
+/**
+ * Constants class with the strings used in the responses of the controllers.
+ *
+ * @since 1.0.0
+ * @author Willow Maui Garcia
+ */
 public class ResponseStringConstants {
     private ResponseStringConstants(){}
 

@@ -10,6 +10,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * Entity to represent a user in the system.
+ *
+ * <p>This class represents a user in the system. It contains the fields
+ * that are common to all users, such as the username and password.</p>
+ *
+ * @author Willow Maui Garcia
+ * @since 1.0.0
+ */
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)

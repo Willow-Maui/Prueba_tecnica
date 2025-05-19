@@ -5,7 +5,12 @@ import org.example.domain.models.enums.Currency;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
+/**
+ * This class represents the price of a product.
+ *
+ * @since 1.0.0
+ * @author Willow Maui García
+ */
 @Data
 public class Price {
     private Long brandId;

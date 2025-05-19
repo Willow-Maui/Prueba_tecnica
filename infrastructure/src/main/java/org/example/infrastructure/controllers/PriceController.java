@@ -28,6 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
+/**
+ * This class is a controller for the price resource.
+ *
+ * @since 1.0.0
+ * @author Willow Maui Garcia
+ */
 @RestController
 @RequestMapping(APIConstants.API_PRICES)
 @RequiredArgsConstructor
@@ -37,6 +43,18 @@ public class PriceController {
     private final PriceMapper priceMapper;
     private static final Logger logger = LoggerFactory.getLogger(PriceController.class);
 
+    /**
+     * Retrieves the price that matches the given search criteria, such as query date, product ID, and brand ID.
+     * If the query date is not provided, it searches for the current valid price.
+     *
+     * @param priceRequest The request containing the criteria for retrieving the price.
+     * @return A ResponseEntity containing the price details if found, or an error response if not found or if any issue occurs.
+     *
+     * @apiNote This endpoint requires the "ROLE_PRUEBA" authority to access.
+     *
+     * @since 1.0.0
+     * @author Willow Maui Garcia
+     */
     @PostMapping(value="/",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Obtener el precio según los criterios", description = "Obtiene el precio que cumple con los criterios de busqueda, pudiendo ser nulo el de fecha.")
     @ApiResponse(responseCode = "200", description = "Precio encontrado", content = @Content(schema = @Schema(implementation = PriceResponse.class)))

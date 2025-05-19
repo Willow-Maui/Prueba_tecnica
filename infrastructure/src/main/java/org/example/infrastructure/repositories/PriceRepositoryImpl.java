@@ -14,6 +14,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation of the PriceRepository interface.
+ *
+ * <p>This repository implementation provides methods to interact with the Price
+ * object in the application layer. It utilizes the PriceJpaRepository for
+ * database operations and the PriceMapper for entity-model mapping.</p>
+ *
+ * <p>The repository supports switching query logic based on active Spring profiles.
+ * If the active profiles contain "criteria", a custom query logic is used; otherwise,
+ * a predefined query is executed.</p>
+ *
+ * @since 1.0.0
+ * @author Willow Maui Garcia
+ */
 @Repository
 @RequiredArgsConstructor
 public class PriceRepositoryImpl implements PriceRepository {
@@ -25,6 +39,17 @@ public class PriceRepositoryImpl implements PriceRepository {
     private final PriceMapper priceMapper ;
     private final Environment environment;
 
+    /**
+     * Finds a price based on the given criteria.
+     *
+     * @param queryDate the date to search for a price entity
+     * @param productId the id of the product
+     * @param brandId the id of the brand
+     * @return the price found
+     *
+     * @since 1.0.0
+     * @author Willow Maui Garcia
+     */
     @Override
     public Price findPriceByCriteria(Date queryDate, Long productId, Long brandId) {
         PriceEntity priceEntity=null;
