@@ -12,13 +12,13 @@ import java.util.Date;
 public interface PriceJpaRepository extends JpaRepository<PriceEntity, Long>  {
     @Query("SELECT p " +
             "FROM PriceEntity p " +
-            "WHERE p.startDate <= :fechaConsulta AND p.endDate >= :fechaConsulta AND p.productId = :productId AND p.brandId = :brandId " +
+            "WHERE p.startDate <= :queryDate AND p.endDate >= :queryDate AND p.productId = :productId AND p.brandId = :brandId " +
             "ORDER BY p.priority DESC, p.startDate DESC LIMIT 1")
     PriceEntity findPriceEntityByQuery(
-            @Param("fechaConsulta") Date fechaConsulta,
+            @Param("queryDate") Date queryDate,
             @Param("productId") Long productId,
             @Param("brandId") Long brandId
     );
 
-    PriceEntity findPriceEntityAlternative(Date fechaConsulta, Long productId,Long brandId);
+    PriceEntity findPriceEntityAlternative(Date queryDate, Long productId,Long brandId);
 }

@@ -26,16 +26,16 @@ public class PriceRepositoryImpl implements PriceRepository {
     private final Environment environment;
 
     @Override
-    public Price findPriceByCriteria(Date fechaConsulta, Long productId, Long brandId) {
+    public Price findPriceByCriteria(Date queryDate, Long productId, Long brandId) {
         PriceEntity priceEntity=null;
         String[] activeProfiles = environment.getActiveProfiles();
 
         List<String> profiles = Arrays.asList(activeProfiles);
 
         if (profiles.contains(CRITERIA)) {
-            priceEntity = priceJpaRepository.findPriceEntityAlternative(fechaConsulta, productId, brandId);
+            priceEntity = priceJpaRepository.findPriceEntityAlternative(queryDate, productId, brandId);
         } else {
-            priceEntity = priceJpaRepository.findPriceEntityByQuery(fechaConsulta, productId, brandId);
+            priceEntity = priceJpaRepository.findPriceEntityByQuery(queryDate, productId, brandId);
         }
 
         if (Objects.isNull(priceEntity)) {

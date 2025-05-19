@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class PriceRequest {
 
-    private Date fechaConsulta;
+    private Date queryDate;
 
     private Long productId;
 

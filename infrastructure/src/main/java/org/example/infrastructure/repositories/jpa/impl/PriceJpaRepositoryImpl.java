@@ -14,15 +14,15 @@ public class PriceJpaRepositoryImpl {
 
     @PersistenceContext
     private EntityManager entityManager;
-    public PriceEntity findPriceEntityAlternative(Date fechaConsulta, Long productId, Long brandId){
+    public PriceEntity findPriceEntityAlternative(Date queryDate, Long productId, Long brandId){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<PriceEntity> criteriaQuery = criteriaBuilder.createQuery(PriceEntity.class);
 
         Root<PriceEntity> root = criteriaQuery.from(PriceEntity.class);
 
         criteriaQuery.where(
-                criteriaBuilder.lessThanOrEqualTo(root.get("startDate"), fechaConsulta),
-                criteriaBuilder.greaterThanOrEqualTo(root.get("endDate"), fechaConsulta),
+                criteriaBuilder.lessThanOrEqualTo(root.get("startDate"), queryDate),
+                criteriaBuilder.greaterThanOrEqualTo(root.get("endDate"), queryDate),
                 criteriaBuilder.equal(root.get("productId"), productId),
                 criteriaBuilder.equal(root.get("brandId"), brandId)
         );

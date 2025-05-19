@@ -16,16 +16,16 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-    private static final String MENSAJE_ERROR_RUTA_NO_ENCONTRADA = "Ruta de controlador no encontrada: {}.";
+    private static final String NOT_FOUND_ROUTE_ERROR_MESSAGE = "Ruta de controlador no encontrada: {}.";
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ErrorResponse> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-        logger.error(MENSAJE_ERROR_RUTA_NO_ENCONTRADA, ex.getRequestURL() );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.URL_DESCONOCIDA).build());
+        logger.error(NOT_FOUND_ROUTE_ERROR_MESSAGE, ex.getRequestURL() );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.UNKNOWN_URL).build());
     }
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ErrorResponse> handleNoResourceFoundException(NoResourceFoundException ex) {
-        logger.error(MENSAJE_ERROR_RUTA_NO_ENCONTRADA , ex.getResourcePath() );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.URL_DESCONOCIDA).build());
+        logger.error(NOT_FOUND_ROUTE_ERROR_MESSAGE, ex.getResourcePath() );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.UNKNOWN_URL).build());
     }
 }

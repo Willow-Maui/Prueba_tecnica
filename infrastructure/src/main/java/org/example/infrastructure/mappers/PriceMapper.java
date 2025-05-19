@@ -26,7 +26,7 @@ public interface PriceMapper {
         if (curr == null) {
             return null;
         }
-        return Currency.fromValor(curr);
+        return Currency.fromValue(curr);
     }
 
     @Named("currencyGetValue")
@@ -34,6 +34,6 @@ public interface PriceMapper {
         if (curr == null) {
             return null;
         }
-        return curr.getValor();
+        return curr.getValue();
     }
 }

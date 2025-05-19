@@ -1,25 +1,23 @@
 package org.example.domain.models.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum Currency {
     EUR("EUR");
 
-    private final String valor;
+    private final String value;
 
-    Currency(String valor) {
-        this.valor = valor;
+    Currency(String value) {
+        this.value = value;
     }
 
-    public static Currency fromValor(String valor) {
+    public static Currency fromValue(String value) {
         for (Currency currency : Currency.values()) {
-            if (currency.valor.equalsIgnoreCase(valor)) {
+            if (currency.value.equalsIgnoreCase(value)) {
                 return currency;
             }
         }
         return null;
     }
-
-    public String getValor() {
-        return valor;
-    }
-
 }

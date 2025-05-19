@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class PriceQuery {
-    private Date fechaConsulta;
+    private Date queryDate;
 
     private Long productId;
 

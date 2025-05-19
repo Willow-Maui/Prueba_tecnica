@@ -25,17 +25,17 @@ public class PriceServiceImpl implements PriceService{
 
     @Override
     @Transactional
-    @Cacheable(value = "prices", key = "#criteria.fechaConsulta + '-' + #criteria.productId + '-' + #criteria.brandId")
+    @Cacheable(value = "prices", key = "#criteria.queryDate + '-' + #criteria.productId + '-' + #criteria.brandId")
     public Price getPriceByCriteria(PriceQuery criteria) {
         checkArguments(criteria);
-        Date fechaConsulta = criteria.getFechaConsulta();
+        Date queryDate = criteria.getQueryDate();
 
-        if (fechaConsulta == null) {
-            fechaConsulta = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        if (queryDate == null) {
+            queryDate = Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
         }
 
         return priceRepository.findPriceByCriteria(
-                fechaConsulta,
+                queryDate,
                 criteria.getProductId(),
                 criteria.getBrandId());
     }

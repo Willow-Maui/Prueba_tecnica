@@ -27,7 +27,7 @@ import java.util.*;
 
 public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
 
-    public static final String LOGIN_INCORRECTO = "Login incorrecto.";
+    public static final String WRONG_LOGIN = "Login incorrecto.";
     public static final String MALFORMED_LOGING = "Malformed loging.";
     public static final int EXPIRATION_TIME = 3600000;
     public static final String TOKEN = "token";
@@ -98,7 +98,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         Gson gson=new Gson();
         Map<String,String> body=new HashMap<>();
-        body.put(MESSAGE,LOGIN_INCORRECTO);
+        body.put(MESSAGE, WRONG_LOGIN);
 
         response.getWriter().write(gson.toJson(body));
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
