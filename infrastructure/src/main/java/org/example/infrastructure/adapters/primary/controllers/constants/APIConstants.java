@@ -1,4 +1,4 @@
-package org.example.infrastructure.controllers.constants;
+package org.example.infrastructure.adapters.primary.controllers.constants;
 
 /**
  * This class contains the constants for the API paths.

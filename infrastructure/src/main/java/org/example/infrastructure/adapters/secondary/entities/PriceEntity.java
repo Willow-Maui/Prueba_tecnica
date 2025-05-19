@@ -1,4 +1,4 @@
-package org.example.infrastructure.entities;
+package org.example.infrastructure.adapters.secondary.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

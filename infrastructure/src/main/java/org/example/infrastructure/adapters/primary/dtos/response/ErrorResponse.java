@@ -1,4 +1,4 @@
-package org.example.infrastructure.dtos.response;
+package org.example.infrastructure.adapters.primary.dtos.response;
 
 /**
  * DTO with the error response of the controller.

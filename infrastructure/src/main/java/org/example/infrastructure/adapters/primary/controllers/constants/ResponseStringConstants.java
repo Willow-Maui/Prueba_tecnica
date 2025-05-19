@@ -1,4 +1,4 @@
-package org.example.infrastructure.controllers.constants;
+package org.example.infrastructure.adapters.primary.controllers.constants;
 /**
  * Constants class with the strings used in the responses of the controllers.
  *

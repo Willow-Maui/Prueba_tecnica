@@ -1,4 +1,4 @@
-package org.example.infrastructure.repositories.jpa.impl;
+package org.example.infrastructure.adapters.secondary.repositories.jpa.impl;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -6,7 +6,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-import org.example.infrastructure.entities.PriceEntity;
+import org.example.infrastructure.adapters.secondary.entities.PriceEntity;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 package org.example.infrastructure.security.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.infrastructure.repositories.jpa.security.UserRepository;
+import org.example.infrastructure.adapters.secondary.repositories.jpa.security.UserRepository;
 import org.example.infrastructure.security.entities.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

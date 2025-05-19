@@ -1,4 +1,4 @@
-package org.example.infrastructure.dtos.request;
+package org.example.infrastructure.adapters.primary.dtos.request;
 
 import lombok.Data;
 

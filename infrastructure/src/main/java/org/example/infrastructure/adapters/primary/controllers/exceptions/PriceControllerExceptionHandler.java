@@ -1,9 +1,9 @@
-package org.example.infrastructure.controllers.exceptions;
+package org.example.infrastructure.adapters.primary.controllers.exceptions;
 
-import org.example.infrastructure.controllers.PriceController;
-import org.example.infrastructure.controllers.constants.ResponseStringConstants;
-import org.example.infrastructure.dtos.response.PriceErrorResponse;
-import org.example.infrastructure.dtos.response.PriceResponseInterface;
+import org.example.infrastructure.adapters.primary.controllers.PriceController;
+import org.example.infrastructure.adapters.primary.controllers.constants.ResponseStringConstants;
+import org.example.infrastructure.adapters.primary.dtos.response.PriceErrorResponse;
+import org.example.infrastructure.adapters.primary.dtos.response.PriceResponseInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

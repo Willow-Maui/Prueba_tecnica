@@ -1,7 +1,7 @@
-package org.example.infrastructure.controllers.exceptions;
+package org.example.infrastructure.adapters.primary.controllers.exceptions;
 
-import org.example.infrastructure.controllers.constants.ResponseStringConstants;
-import org.example.infrastructure.dtos.response.ErrorResponse;
+import org.example.infrastructure.adapters.primary.controllers.constants.ResponseStringConstants;
+import org.example.infrastructure.adapters.primary.dtos.response.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

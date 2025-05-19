@@ -1,4 +1,4 @@
-package org.example.infrastructure.repositories.jpa.security;
+package org.example.infrastructure.adapters.secondary.repositories.jpa.security;
 
 import org.example.infrastructure.security.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

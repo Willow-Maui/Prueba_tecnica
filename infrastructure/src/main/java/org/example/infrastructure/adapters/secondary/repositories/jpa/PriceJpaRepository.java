@@ -1,6 +1,6 @@
-package org.example.infrastructure.repositories.jpa;
+package org.example.infrastructure.adapters.secondary.repositories.jpa;
 
-import org.example.infrastructure.entities.PriceEntity;
+import org.example.infrastructure.adapters.secondary.entities.PriceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

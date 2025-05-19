@@ -1,4 +1,4 @@
-package org.example.infrastructure.controllers;
+package org.example.infrastructure.adapters.primary.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -8,13 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.services.PriceService;
 import org.example.infrastructure.aspects.TimeMeasurement;
 import org.example.infrastructure.aspects.UserLog;
-import org.example.infrastructure.controllers.constants.APIConstants;
-import org.example.infrastructure.controllers.constants.ResponseStringConstants;
-import org.example.infrastructure.dtos.request.PriceRequest;
-import org.example.infrastructure.dtos.response.PriceErrorResponse;
-import org.example.infrastructure.dtos.response.PriceResponse;
-import org.example.infrastructure.dtos.response.PriceResponseInterface;
-import org.example.infrastructure.mappers.PriceMapper;
+import org.example.infrastructure.adapters.primary.controllers.constants.APIConstants;
+import org.example.infrastructure.adapters.primary.controllers.constants.ResponseStringConstants;
+import org.example.infrastructure.adapters.primary.dtos.request.PriceRequest;
+import org.example.infrastructure.adapters.primary.dtos.response.PriceErrorResponse;
+import org.example.infrastructure.adapters.primary.dtos.response.PriceResponse;
+import org.example.infrastructure.adapters.primary.dtos.response.PriceResponseInterface;
+import org.example.infrastructure.adapters.primary.mappers.PriceMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

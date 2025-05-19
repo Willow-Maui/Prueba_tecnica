@@ -1,11 +1,11 @@
-package org.example.infrastructure.repositories;
+package org.example.infrastructure.adapters.secondary.repositories;
 
 import lombok.RequiredArgsConstructor;
 import org.example.application.adapters.in.PriceRepository;
 import org.example.domain.models.Price;
-import org.example.infrastructure.entities.PriceEntity;
-import org.example.infrastructure.mappers.PriceMapper;
-import org.example.infrastructure.repositories.jpa.PriceJpaRepository;
+import org.example.infrastructure.adapters.secondary.entities.PriceEntity;
+import org.example.infrastructure.adapters.secondary.mappers.PriceEntityMapper;
+import org.example.infrastructure.adapters.secondary.repositories.jpa.PriceJpaRepository;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +33,7 @@ public class PriceRepositoryImpl implements PriceRepository {
     private static final String QUERY = "query";
     private static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
     private final PriceJpaRepository priceJpaRepository;
-    private final PriceMapper priceMapper ;
+    private final PriceEntityMapper priceEntityMapper ;
     private final Environment environment;
 
     /**
@@ -63,6 +63,6 @@ public class PriceRepositoryImpl implements PriceRepository {
         if (Objects.isNull(priceEntity)) {
             return Optional.empty();
         }
-        return Optional.of(priceMapper.priceEntityToPrice(priceEntity));
+        return Optional.of(priceEntityMapper.priceEntityToPrice(priceEntity));
     }
 }
