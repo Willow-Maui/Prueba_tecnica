@@ -1,9 +1,5 @@
 package org.example.infrastructure.dtos.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * Class to represent the error response of the price controller when the price is not found, or
@@ -13,10 +9,5 @@ import lombok.NoArgsConstructor;
  * @since 1.0.0
  */
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class PriceErrorResponse implements PriceResponseInterface{
-    private String error;
+public record PriceErrorResponse(String error) implements PriceResponseInterface{
 }

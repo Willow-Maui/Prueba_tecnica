@@ -38,8 +38,8 @@ public class GlobalExceptionHandler {
  */
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<ErrorResponse> handleNoHandlerFoundException(NoHandlerFoundException ex) {
-        logger.error(NOT_FOUND_ROUTE_ERROR_MESSAGE, ex.getRequestURL() );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.UNKNOWN_URL).build());
+        logger.error(NOT_FOUND_ROUTE_ERROR_MESSAGE, ex.getRequestURL());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ResponseStringConstants.UNKNOWN_URL));
     }
     /**
      * Handles NoResourceFoundException by logging the error and returning a NOT_FOUND response.
@@ -56,6 +56,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ErrorResponse> handleNoResourceFoundException(NoResourceFoundException ex) {
         logger.error(NOT_FOUND_ROUTE_ERROR_MESSAGE, ex.getResourcePath() );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder().error(ResponseStringConstants.UNKNOWN_URL).build());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse(ResponseStringConstants.UNKNOWN_URL));
     }
 }

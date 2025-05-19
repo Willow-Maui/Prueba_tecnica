@@ -37,7 +37,7 @@ public class PriceControllerExceptionHandler {
     public ResponseEntity<PriceResponseInterface> handleIllegalArgumentException(IllegalArgumentException ex) {
         logger.error(ILLEGAL_ARGUMENT_EXCEPTION_CATCH, ex.getMessage());
         logger.debug(EXCEPTION_STACK_TRACE, ex);
-        return ResponseEntity.badRequest().body(PriceErrorResponse.builder().error(ResponseStringConstants.INVALID_PARAMETERS + ex.getMessage()).build());
+        return ResponseEntity.badRequest().body(new PriceErrorResponse(ResponseStringConstants.INVALID_PARAMETERS + ex.getMessage()));
     }
     /**
      * Handles Exception by logging the error and returning a INTERNAL_SERVER_ERROR response.
@@ -51,7 +51,7 @@ public class PriceControllerExceptionHandler {
     public ResponseEntity<PriceResponseInterface> handleGeneralException(Exception ex) {
         logger.error(EXCEPTION_CATCH, ex.getMessage());
         logger.debug(EXCEPTION_STACK_TRACE, ex);
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(PriceErrorResponse.builder().error(ResponseStringConstants.INTERNAL_ERROR + ex.getMessage()).build());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new PriceErrorResponse(ResponseStringConstants.INTERNAL_ERROR + ex.getMessage()));
     }
     /**
      * Handles RuntimeException by logging the error and returning a SERVICE_UNAVAILABLE response.
@@ -65,6 +65,6 @@ public class PriceControllerExceptionHandler {
     public ResponseEntity<PriceResponseInterface> handleRuntimeException(RuntimeException ex) {
         logger.error(RUNTIME_EXCEPTION_CATCH, ex.getMessage());
         logger.debug(EXCEPTION_STACK_TRACE, ex);
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(PriceErrorResponse.builder().error(ResponseStringConstants.ERROR_RUNTIME + ex.getMessage()).build());
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(new PriceErrorResponse(ResponseStringConstants.ERROR_RUNTIME + ex.getMessage()));
     }
 }

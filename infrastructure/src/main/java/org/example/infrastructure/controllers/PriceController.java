@@ -71,7 +71,7 @@ public class PriceController {
         logger.debug("PriceResponse obtenido: {}", priceResponse);
         if (Objects.isNull(priceResponse)) {
             logger.warn("PriceResponse es nulo, devolviendo NOT_FOUND");
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(PriceErrorResponse.builder().error(ResponseStringConstants.PRICE_NOT_FOUND).build());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new PriceErrorResponse(ResponseStringConstants.PRICE_NOT_FOUND));
         }
         logger.info("PriceResponse encontrado, devolviendo OK");
         return ResponseEntity.ok(priceResponse);
